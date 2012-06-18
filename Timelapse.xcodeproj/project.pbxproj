@@ -12,7 +12,7 @@
 		D965F0E1158FA76E00447E62 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D965F0E0158FA76E00447E62 /* CoreGraphics.framework */; };
 		D965F0E7158FA76E00447E62 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D965F0E5158FA76E00447E62 /* InfoPlist.strings */; };
 		D965F0E9158FA76E00447E62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D965F0E8158FA76E00447E62 /* main.m */; };
-		D965F0ED158FA76E00447E62 /* GROAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D965F0EC158FA76E00447E62 /* GROAppDelegate.m */; };
+		D965F0ED158FA76E00447E62 /* GRWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D965F0EC158FA76E00447E62 /* GRWAppDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +24,8 @@
 		D965F0E6158FA76E00447E62 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D965F0E8158FA76E00447E62 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D965F0EA158FA76E00447E62 /* Timelapse-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Timelapse-Prefix.pch"; sourceTree = "<group>"; };
-		D965F0EB158FA76E00447E62 /* GROAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GROAppDelegate.h; sourceTree = "<group>"; };
-		D965F0EC158FA76E00447E62 /* GROAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GROAppDelegate.m; sourceTree = "<group>"; };
+		D965F0EB158FA76E00447E62 /* GRWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GRWAppDelegate.h; sourceTree = "<group>"; };
+		D965F0EC158FA76E00447E62 /* GRWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GRWAppDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,8 +72,8 @@
 		D965F0E2158FA76E00447E62 /* Timelapse */ = {
 			isa = PBXGroup;
 			children = (
-				D965F0EB158FA76E00447E62 /* GROAppDelegate.h */,
-				D965F0EC158FA76E00447E62 /* GROAppDelegate.m */,
+				D965F0EB158FA76E00447E62 /* GRWAppDelegate.h */,
+				D965F0EC158FA76E00447E62 /* GRWAppDelegate.m */,
 				D965F0E3158FA76E00447E62 /* Supporting Files */,
 			);
 			path = Timelapse;
@@ -153,7 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D965F0E9158FA76E00447E62 /* main.m in Sources */,
-				D965F0ED158FA76E00447E62 /* GROAppDelegate.m in Sources */,
+				D965F0ED158FA76E00447E62 /* GRWAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +259,7 @@
 				D965F0F2158FA76E00447E62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

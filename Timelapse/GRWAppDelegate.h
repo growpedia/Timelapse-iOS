@@ -1,5 +1,5 @@
 //
-//  GROAppDelegate.h
+//  GRWAppDelegate.h
 //  Timelapse
 //
 //  Created by Chris Ballinger on 6/18/12.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GROAppDelegate : UIResponder <UIApplicationDelegate>
+@interface GRWAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

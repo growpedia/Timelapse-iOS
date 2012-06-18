@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "GROAppDelegate.h"
+#import "GRWAppDelegate.h"
 
 int main(int argc, char *argv[])
 {
   @autoreleasepool {
-      return UIApplicationMain(argc, argv, nil, NSStringFromClass([GROAppDelegate class]));
+      return UIApplicationMain(argc, argv, nil, NSStringFromClass([GRWAppDelegate class]));
   }
 }
