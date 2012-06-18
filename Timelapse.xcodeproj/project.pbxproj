@@ -1,0 +1,266 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D965F0DD158FA76E00447E62 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D965F0DC158FA76E00447E62 /* UIKit.framework */; };
+		D965F0DF158FA76E00447E62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D965F0DE158FA76E00447E62 /* Foundation.framework */; };
+		D965F0E1158FA76E00447E62 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D965F0E0158FA76E00447E62 /* CoreGraphics.framework */; };
+		D965F0E7158FA76E00447E62 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D965F0E5158FA76E00447E62 /* InfoPlist.strings */; };
+		D965F0E9158FA76E00447E62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D965F0E8158FA76E00447E62 /* main.m */; };
+		D965F0ED158FA76E00447E62 /* GROAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D965F0EC158FA76E00447E62 /* GROAppDelegate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D965F0D8158FA76E00447E62 /* Timelapse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timelapse.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D965F0DC158FA76E00447E62 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D965F0DE158FA76E00447E62 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D965F0E0158FA76E00447E62 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D965F0E4158FA76E00447E62 /* Timelapse-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Timelapse-Info.plist"; sourceTree = "<group>"; };
+		D965F0E6158FA76E00447E62 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D965F0E8158FA76E00447E62 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D965F0EA158FA76E00447E62 /* Timelapse-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Timelapse-Prefix.pch"; sourceTree = "<group>"; };
+		D965F0EB158FA76E00447E62 /* GROAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GROAppDelegate.h; sourceTree = "<group>"; };
+		D965F0EC158FA76E00447E62 /* GROAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GROAppDelegate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D965F0D5158FA76E00447E62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D965F0DD158FA76E00447E62 /* UIKit.framework in Frameworks */,
+				D965F0DF158FA76E00447E62 /* Foundation.framework in Frameworks */,
+				D965F0E1158FA76E00447E62 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D965F0CD158FA76E00447E62 = {
+			isa = PBXGroup;
+			children = (
+				D965F0E2158FA76E00447E62 /* Timelapse */,
+				D965F0DB158FA76E00447E62 /* Frameworks */,
+				D965F0D9158FA76E00447E62 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D965F0D9158FA76E00447E62 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D965F0D8158FA76E00447E62 /* Timelapse.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D965F0DB158FA76E00447E62 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D965F0DC158FA76E00447E62 /* UIKit.framework */,
+				D965F0DE158FA76E00447E62 /* Foundation.framework */,
+				D965F0E0158FA76E00447E62 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D965F0E2158FA76E00447E62 /* Timelapse */ = {
+			isa = PBXGroup;
+			children = (
+				D965F0EB158FA76E00447E62 /* GROAppDelegate.h */,
+				D965F0EC158FA76E00447E62 /* GROAppDelegate.m */,
+				D965F0E3158FA76E00447E62 /* Supporting Files */,
+			);
+			path = Timelapse;
+			sourceTree = "<group>";
+		};
+		D965F0E3158FA76E00447E62 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D965F0E4158FA76E00447E62 /* Timelapse-Info.plist */,
+				D965F0E5158FA76E00447E62 /* InfoPlist.strings */,
+				D965F0E8158FA76E00447E62 /* main.m */,
+				D965F0EA158FA76E00447E62 /* Timelapse-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D965F0D7158FA76E00447E62 /* Timelapse */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D965F0F0158FA76E00447E62 /* Build configuration list for PBXNativeTarget "Timelapse" */;
+			buildPhases = (
+				D965F0D4158FA76E00447E62 /* Sources */,
+				D965F0D5158FA76E00447E62 /* Frameworks */,
+				D965F0D6158FA76E00447E62 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Timelapse;
+			productName = Timelapse;
+			productReference = D965F0D8158FA76E00447E62 /* Timelapse.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D965F0CF158FA76E00447E62 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = GRO;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = D965F0D2158FA76E00447E62 /* Build configuration list for PBXProject "Timelapse" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D965F0CD158FA76E00447E62;
+			productRefGroup = D965F0D9158FA76E00447E62 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D965F0D7158FA76E00447E62 /* Timelapse */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D965F0D6158FA76E00447E62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D965F0E7158FA76E00447E62 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D965F0D4158FA76E00447E62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D965F0E9158FA76E00447E62 /* main.m in Sources */,
+				D965F0ED158FA76E00447E62 /* GROAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D965F0E5158FA76E00447E62 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D965F0E6158FA76E00447E62 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D965F0EE158FA76E00447E62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D965F0EF158FA76E00447E62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D965F0F1158FA76E00447E62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Timelapse/Timelapse-Prefix.pch";
+				INFOPLIST_FILE = "Timelapse/Timelapse-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D965F0F2158FA76E00447E62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Timelapse/Timelapse-Prefix.pch";
+				INFOPLIST_FILE = "Timelapse/Timelapse-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D965F0D2158FA76E00447E62 /* Build configuration list for PBXProject "Timelapse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D965F0EE158FA76E00447E62 /* Debug */,
+				D965F0EF158FA76E00447E62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D965F0F0158FA76E00447E62 /* Build configuration list for PBXNativeTarget "Timelapse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D965F0F1158FA76E00447E62 /* Debug */,
+				D965F0F2158FA76E00447E62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D965F0CF158FA76E00447E62 /* Project object */;
+}
