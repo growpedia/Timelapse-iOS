@@ -18,7 +18,7 @@
 		D965F108158FAEE200447E62 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D965F107158FAEE200447E62 /* AVFoundation.framework */; };
 		D9C6014D1592783000717107 /* GRWBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C6014C1592783000717107 /* GRWBrowserViewController.m */; };
 		D9C601511592797700717107 /* GRWTimelapse.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C601501592797700717107 /* GRWTimelapse.m */; };
-		D9C601591592818B00717107 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C601561592818B00717107 /* JSONKit.m */; };
+		D9C601591592818B00717107 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C601561592818B00717107 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +43,7 @@
 		D9C601501592797700717107 /* GRWTimelapse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRWTimelapse.m; sourceTree = "<group>"; };
 		D9C601551592818B00717107 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		D9C601561592818B00717107 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		D9C6015B15928A0B00717107 /* Strings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Strings.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +99,7 @@
 				D965F0FD158FA8B700447E62 /* GRWCameraViewController.m */,
 				D9C6014B1592783000717107 /* GRWBrowserViewController.h */,
 				D9C6014C1592783000717107 /* GRWBrowserViewController.m */,
+				D9C6015B15928A0B00717107 /* Strings.h */,
 				D9C6014F1592797700717107 /* GRWTimelapse.h */,
 				D9C601501592797700717107 /* GRWTimelapse.m */,
 				D965F100158FAAF600447E62 /* GRWTimelapseController.h */,

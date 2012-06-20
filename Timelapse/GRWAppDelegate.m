@@ -19,7 +19,8 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     GRWBrowserViewController *fileBrowser = [[GRWBrowserViewController alloc] init];
-    self.window.rootViewController = fileBrowser;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:fileBrowser];
+    self.window.rootViewController = navController;
     [self.window makeKeyAndVisible];
     return YES;
 }

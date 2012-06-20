@@ -7,6 +7,7 @@
 //
 
 #import "GRWBrowserViewController.h"
+#import "Strings.h"
 
 @interface GRWBrowserViewController ()
 
@@ -25,6 +26,7 @@
     if (self = [super init]) 
     {
         self.browserTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        self.title = BROWSER_TITLE;
     }
     return self;
 }
@@ -33,6 +35,18 @@
 {
     [super viewWillAppear:animated];
     self.browserTableView.frame = self.view.bounds;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(newTimelapse:)];
+}
+
+- (void) viewDidLoad 
+{
+    [super viewDidLoad];
+    [self.view addSubview:browserTableView];
+}
+
+- (void) newTimelapse:(id)sender 
+{
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
