@@ -13,6 +13,12 @@
 		D965F0E7158FA76E00447E62 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D965F0E5158FA76E00447E62 /* InfoPlist.strings */; };
 		D965F0E9158FA76E00447E62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D965F0E8158FA76E00447E62 /* main.m */; };
 		D965F0ED158FA76E00447E62 /* GRWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D965F0EC158FA76E00447E62 /* GRWAppDelegate.m */; };
+		D965F0FE158FA8B700447E62 /* GRWCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D965F0FD158FA8B700447E62 /* GRWCameraViewController.m */; };
+		D965F102158FAAF600447E62 /* GRWTimelapseController.m in Sources */ = {isa = PBXBuildFile; fileRef = D965F101158FAAF600447E62 /* GRWTimelapseController.m */; };
+		D965F108158FAEE200447E62 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D965F107158FAEE200447E62 /* AVFoundation.framework */; };
+		D9C6014D1592783000717107 /* GRWBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C6014C1592783000717107 /* GRWBrowserViewController.m */; };
+		D9C601511592797700717107 /* GRWTimelapse.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C601501592797700717107 /* GRWTimelapse.m */; };
+		D9C601591592818B00717107 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C601561592818B00717107 /* JSONKit.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +32,17 @@
 		D965F0EA158FA76E00447E62 /* Timelapse-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Timelapse-Prefix.pch"; sourceTree = "<group>"; };
 		D965F0EB158FA76E00447E62 /* GRWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GRWAppDelegate.h; sourceTree = "<group>"; };
 		D965F0EC158FA76E00447E62 /* GRWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GRWAppDelegate.m; sourceTree = "<group>"; };
+		D965F0FC158FA8B700447E62 /* GRWCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRWCameraViewController.h; sourceTree = "<group>"; };
+		D965F0FD158FA8B700447E62 /* GRWCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRWCameraViewController.m; sourceTree = "<group>"; };
+		D965F100158FAAF600447E62 /* GRWTimelapseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRWTimelapseController.h; sourceTree = "<group>"; };
+		D965F101158FAAF600447E62 /* GRWTimelapseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRWTimelapseController.m; sourceTree = "<group>"; };
+		D965F107158FAEE200447E62 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D9C6014B1592783000717107 /* GRWBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRWBrowserViewController.h; sourceTree = "<group>"; };
+		D9C6014C1592783000717107 /* GRWBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRWBrowserViewController.m; sourceTree = "<group>"; };
+		D9C6014F1592797700717107 /* GRWTimelapse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRWTimelapse.h; sourceTree = "<group>"; };
+		D9C601501592797700717107 /* GRWTimelapse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRWTimelapse.m; sourceTree = "<group>"; };
+		D9C601551592818B00717107 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		D9C601561592818B00717107 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D965F108158FAEE200447E62 /* AVFoundation.framework in Frameworks */,
 				D965F0DD158FA76E00447E62 /* UIKit.framework in Frameworks */,
 				D965F0DF158FA76E00447E62 /* Foundation.framework in Frameworks */,
 				D965F0E1158FA76E00447E62 /* CoreGraphics.framework in Frameworks */,
@@ -45,6 +63,8 @@
 		D965F0CD158FA76E00447E62 = {
 			isa = PBXGroup;
 			children = (
+				D965F107158FAEE200447E62 /* AVFoundation.framework */,
+				D9C601521592818B00717107 /* Dependencies */,
 				D965F0E2158FA76E00447E62 /* Timelapse */,
 				D965F0DB158FA76E00447E62 /* Frameworks */,
 				D965F0D9158FA76E00447E62 /* Products */,
@@ -74,6 +94,14 @@
 			children = (
 				D965F0EB158FA76E00447E62 /* GRWAppDelegate.h */,
 				D965F0EC158FA76E00447E62 /* GRWAppDelegate.m */,
+				D965F0FC158FA8B700447E62 /* GRWCameraViewController.h */,
+				D965F0FD158FA8B700447E62 /* GRWCameraViewController.m */,
+				D9C6014B1592783000717107 /* GRWBrowserViewController.h */,
+				D9C6014C1592783000717107 /* GRWBrowserViewController.m */,
+				D9C6014F1592797700717107 /* GRWTimelapse.h */,
+				D9C601501592797700717107 /* GRWTimelapse.m */,
+				D965F100158FAAF600447E62 /* GRWTimelapseController.h */,
+				D965F101158FAAF600447E62 /* GRWTimelapseController.m */,
 				D965F0E3158FA76E00447E62 /* Supporting Files */,
 			);
 			path = Timelapse;
@@ -88,6 +116,23 @@
 				D965F0EA158FA76E00447E62 /* Timelapse-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D9C601521592818B00717107 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				D9C601531592818B00717107 /* JSONKit */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		D9C601531592818B00717107 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				D9C601551592818B00717107 /* JSONKit.h */,
+				D9C601561592818B00717107 /* JSONKit.m */,
+			);
+			path = JSONKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -116,7 +161,7 @@
 		D965F0CF158FA76E00447E62 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = GRO;
+				CLASSPREFIX = GRW;
 				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = D965F0D2158FA76E00447E62 /* Build configuration list for PBXProject "Timelapse" */;
@@ -154,6 +199,11 @@
 			files = (
 				D965F0E9158FA76E00447E62 /* main.m in Sources */,
 				D965F0ED158FA76E00447E62 /* GRWAppDelegate.m in Sources */,
+				D965F0FE158FA8B700447E62 /* GRWCameraViewController.m in Sources */,
+				D965F102158FAAF600447E62 /* GRWTimelapseController.m in Sources */,
+				D9C6014D1592783000717107 /* GRWBrowserViewController.m in Sources */,
+				D9C601511592797700717107 /* GRWTimelapse.m in Sources */,
+				D9C601591592818B00717107 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

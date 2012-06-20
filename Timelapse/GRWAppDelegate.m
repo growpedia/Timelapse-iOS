@@ -7,6 +7,7 @@
 //
 
 #import "GRWAppDelegate.h"
+#import "GRWBrowserViewController.h"
 
 @implementation GRWAppDelegate
 
@@ -17,6 +18,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    GRWBrowserViewController *fileBrowser = [[GRWBrowserViewController alloc] init];
+    self.window.rootViewController = fileBrowser;
     [self.window makeKeyAndVisible];
     return YES;
 }
