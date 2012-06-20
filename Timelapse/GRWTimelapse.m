@@ -17,8 +17,9 @@
 #define ISO_8601 @"yyyy-MM-dd HH:mm:ss.SSS'Z'"
 
 @interface GRWTimelapse(Private)
--(void) loadMetadata;
--(void) loadDefaults;
+- (void) loadMetadata;
+- (void) loadDefaults;
+- (void) loadImages;
 @end
 
 @implementation GRWTimelapse
@@ -38,6 +39,7 @@
     if (self = [super init]) {
         self.directoryPath = path;
         [self loadMetadata];
+        [self loadImages];
     }
     return self;
 }
@@ -89,6 +91,10 @@
     self.description = @"";
     self.creationDate = [NSDate date];
     self.modifiedDate = [NSDate date];
+}
+
+- (void) loadImages {
+    
 }
 
 @end

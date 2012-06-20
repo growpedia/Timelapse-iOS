@@ -100,8 +100,7 @@
 				D9C6014B1592783000717107 /* GRWBrowserViewController.h */,
 				D9C6014C1592783000717107 /* GRWBrowserViewController.m */,
 				D9C6015B15928A0B00717107 /* Strings.h */,
-				D9C6014F1592797700717107 /* GRWTimelapse.h */,
-				D9C601501592797700717107 /* GRWTimelapse.m */,
+				D9C6015C15928BCC00717107 /* Model */,
 				D965F100158FAAF600447E62 /* GRWTimelapseController.h */,
 				D965F101158FAAF600447E62 /* GRWTimelapseController.m */,
 				D965F0E3158FA76E00447E62 /* Supporting Files */,
@@ -135,6 +134,15 @@
 				D9C601561592818B00717107 /* JSONKit.m */,
 			);
 			path = JSONKit;
+			sourceTree = "<group>";
+		};
+		D9C6015C15928BCC00717107 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D9C6014F1592797700717107 /* GRWTimelapse.h */,
+				D9C601501592797700717107 /* GRWTimelapse.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

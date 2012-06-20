@@ -9,5 +9,6 @@
 #import "GRWTimelapseController.h"
 
 @implementation GRWTimelapseController
+@synthesize timelapses;
 
 @end

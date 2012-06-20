@@ -10,4 +10,6 @@
 
 @interface GRWTimelapseController : NSObject
 
+@property (nonatomic, retain) NSMutableArray *timelapses;
+
 @end

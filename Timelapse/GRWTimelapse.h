@@ -24,7 +24,7 @@
 @property (nonatomic, retain) NSDate *creationDate;
 @property (nonatomic, retain) NSDate *modifiedDate;
 @property (nonatomic, retain) NSString *directoryPath;
-@property (nonatomic, retain) NSArray *images;
+@property (nonatomic, retain) NSMutableArray *images;
 
 - (id) initWithDirectoryPath:(NSString*)path;
 
