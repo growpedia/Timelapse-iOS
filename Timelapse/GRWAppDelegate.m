@@ -8,6 +8,7 @@
 
 #import "GRWAppDelegate.h"
 #import "GRWBrowserViewController.h"
+#import "GRWTimelapseEditorViewController.h"
 
 @implementation GRWAppDelegate
 
@@ -19,8 +20,20 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     GRWBrowserViewController *fileBrowser = [[GRWBrowserViewController alloc] init];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:fileBrowser];
-    self.window.rootViewController = navController;
+    UINavigationController *browserNavController = [[UINavigationController alloc] initWithRootViewController:fileBrowser];
+    UIViewController *rootViewController = nil;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        UISplitViewController *splitViewController = [[UISplitViewController alloc] init];
+        GRWTimelapseEditorViewController *editorViewController = fileBrowser.editorViewController;
+        UINavigationController *editorNavController = [[UINavigationController alloc] initWithRootViewController:editorViewController];
+        splitViewController.viewControllers = [NSArray arrayWithObjects:browserNavController, editorNavController, nil];
+        splitViewController.delegate = editorViewController;
+        rootViewController = splitViewController;
+    } else {
+        rootViewController = browserNavController;
+    }
+    
+    self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
     return YES;
 }

@@ -16,12 +16,13 @@
 @end
 
 @implementation GRWBrowserViewController
-@synthesize browserTableView, timelapseController;
+@synthesize browserTableView, timelapseController, editorViewController;
 
 - (void) dealloc 
 {
     self.browserTableView = nil;
     self.timelapseController = nil;
+    self.editorViewController = nil;
 }
 
 - (id)init
@@ -34,6 +35,7 @@
         self.timelapseController = [[GRWTimelapseController alloc] init];
         self.title = BROWSER_TITLE;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(newTimelapse:)];
+        self.editorViewController = [[GRWTimelapseEditorViewController alloc] init];
     }
     return self;
 }
@@ -65,9 +67,10 @@
 
 - (void) editTimelapse:(GRWTimelapse*)timelapse
 {
-    GRWTimelapseEditorViewController *timelapseEditor = [[GRWTimelapseEditorViewController alloc] initWithTimelapse:timelapse];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:timelapseEditor];
-    [self presentModalViewController:navController animated:YES];
+    editorViewController.timelapse = timelapse;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        [self.navigationController pushViewController:editorViewController animated:YES];
+    }
 }
 
 #pragma mark UITableViewDelegate methods
