@@ -5,14 +5,16 @@
 //  Created by Chris Ballinger on 6/21/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
+//  http://stackoverflow.com/questions/1282830/uiimagepickercontroller-uiimage-memory-and-more
 
 #import "UIImage+GRWExtensions.h"
 
 double radians(double degrees) {
-    return degrees*180/M_PI;
+    return degrees*M_PI/180;
 }
 
 @implementation UIImage (GRWExtensions)
+
 
 + (UIImage*)imageWithImage:(UIImage*)sourceImage scaledToSizeWithSameAspectRatio:(CGSize)targetSize;
 {  
@@ -102,6 +104,25 @@ double radians(double degrees) {
     CGImageRelease(ref);
     
     return newImage; 
+}
+
++ (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
+{
+    // Create a graphics image context
+    UIGraphicsBeginImageContext(newSize);
+    
+    // Tell the old image to draw in this new context, with the desired
+    // new size
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    
+    // Get the new image from the context
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // End the context
+    UIGraphicsEndImageContext();
+    
+    // Return the new image.
+    return newImage;
 }
 
 @end

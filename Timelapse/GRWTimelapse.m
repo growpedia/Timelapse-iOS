@@ -109,7 +109,7 @@
         if ([[imagePath pathExtension] isEqualToString:@"jpeg"]) {
             UIImage *image = [[UIImage alloc] initWithContentsOfFile:imagePath];
             NSLog(@"Loading image: %@", fileName);
-            UIImage *scaledImage = [UIImage imageWithImage:image scaledToSizeWithSameAspectRatio:CGSizeMake(1024, 1024)];
+            UIImage *scaledImage = [UIImage imageWithImage:image scaledToSize:CGSizeMake(1024, 1024)];
             [self.images addObject:scaledImage];
         }
     }
@@ -156,7 +156,7 @@
     if (error) {
         NSLog(@"Error writing JPEG: %@%@", [error localizedDescription], [error userInfo]);
     }
-    UIImage *scaledImage = [UIImage imageWithImage:newImage scaledToSizeWithSameAspectRatio:CGSizeMake(200, 200)];
+    UIImage *scaledImage = [UIImage imageWithImage:newImage scaledToSize:CGSizeMake(200, 200)];
     [self.images addObject:scaledImage];
 }
 

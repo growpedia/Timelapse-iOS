@@ -129,8 +129,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    [self.timelapse addImage:image];
     [self.imagePicker dismissModalViewControllerAnimated:YES];
+    [self.timelapse addImage:image];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

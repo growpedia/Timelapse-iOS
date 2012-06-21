@@ -108,7 +108,7 @@
     GRWTimelapse *timelapse = [timelapseController.timelapses objectAtIndex:indexPath.row];
     cell.textLabel.text = timelapse.name;
     cell.detailTextLabel.text = timelapse.description;
-    UIImage *scaledImage = [UIImage imageWithImage:[timelapse.images lastObject] scaledToSizeWithSameAspectRatio:CGSizeMake(50, 50)];
+    UIImage *scaledImage = [UIImage imageWithImage:[timelapse.images lastObject] scaledToSize:CGSizeMake(50, 50)];
     cell.imageView.image = scaledImage;
     return cell;
 }
