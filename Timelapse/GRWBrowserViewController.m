@@ -46,6 +46,10 @@
     self.browserTableView.frame = self.view.bounds;
     self.browserTableView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight;
     [self.browserTableView reloadData];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        self.editorViewController.timelapse = [timelapseController.timelapses objectAtIndex:0];
+        [self.browserTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+    }
 }
 
 - (void) viewDidLoad 
@@ -58,6 +62,8 @@
 {
     GRWTimelapse *timelapse = [timelapseController newTimelapse];
     [self editTimelapse:timelapse];
+    [self.browserTableView reloadData];
+    [self.browserTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:[timelapseController.timelapses count]-1 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionBottom];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -78,7 +84,9 @@
 {
     GRWTimelapse *timelapse = [timelapseController.timelapses objectAtIndex:indexPath.row];
     [self editTimelapse:timelapse];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

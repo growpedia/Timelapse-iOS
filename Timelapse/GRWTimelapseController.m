@@ -37,6 +37,9 @@
                 [timelapses addObject:timelapse];
             }
         }
+        if ([timelapses count] == 0) {
+            [timelapses addObject:[self newTimelapse]];
+        }
         
     }
     return self;
