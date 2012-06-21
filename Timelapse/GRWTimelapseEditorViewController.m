@@ -14,14 +14,12 @@
 @end
 
 @implementation GRWTimelapseEditorViewController
-@synthesize nameField, nameLabel, descriptionField, descriptionLabel, timelapse;
+@synthesize nameField, descriptionField, timelapse;
 
 
 - (void) dealloc {
     self.nameField = nil;
-    self.nameLabel = nil;
     self.descriptionField = nil;
-    self.descriptionLabel = nil;
     self.timelapse = nil;
 }
 
@@ -30,10 +28,8 @@
     if (self = [super init]) {
         self.nameField = [[UITextField alloc] initWithFrame:CGRectZero];
         self.nameField.delegate = self;
-        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         self.descriptionField = [[UITextField alloc] initWithFrame:CGRectZero];
         self.descriptionField.delegate = self;
-        self.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(takePhotoPressed:)];
     }
     return self;
@@ -62,24 +58,23 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:nameField];
-    [self.view addSubview:nameLabel];
     [self.view addSubview:descriptionField];
-    [self.view addSubview:descriptionLabel];
-    
-    self.nameLabel.text = NAME_WORD;
-    self.descriptionLabel.text = DESCRIPTION_WORD;
     
     self.nameField.borderStyle = UITextBorderStyleRoundedRect;
+    self.nameField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.nameField.placeholder = NAME_WORD;
+    self.nameField.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     self.descriptionField.borderStyle = UITextBorderStyleRoundedRect;
+    self.descriptionField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.descriptionField.placeholder = DESCRIPTION_WORD;
+    self.descriptionField.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth;
 }
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.nameLabel.frame = CGRectMake(0, 0, 100, 50);
-    self.nameField.frame = CGRectMake(100, 0, 200, 50);
-    self.descriptionLabel.frame = CGRectMake(0, 100, 100, 50);
-    self.descriptionField.frame = CGRectMake(100, 100, 200, 50);
-    
+    CGFloat fieldHeight = 30.0;
+    self.nameField.frame = CGRectMake(0, 0, self.view.frame.size.width/2, fieldHeight);
+    self.descriptionField.frame = CGRectMake(self.view.frame.size.width/2, 0, self.view.frame.size.width/2, fieldHeight);
     [self refreshFields];
 }
 

@@ -107,6 +107,7 @@
     GRWTimelapse *timelapse = [timelapseController.timelapses objectAtIndex:indexPath.row];
     cell.textLabel.text = timelapse.name;
     cell.detailTextLabel.text = timelapse.description;
+    
     return cell;
 }
 

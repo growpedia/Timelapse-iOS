@@ -11,8 +11,6 @@
 
 @interface GRWTimelapseEditorViewController : UIViewController <UISplitViewControllerDelegate, UITextFieldDelegate>
 
-@property (nonatomic, retain) UILabel *nameLabel;
-@property (nonatomic, retain) UILabel *descriptionLabel;
 @property (nonatomic, retain) UITextField *nameField;
 @property (nonatomic, retain) UITextField *descriptionField;
 @property (nonatomic, retain) GRWTimelapse *timelapse;
