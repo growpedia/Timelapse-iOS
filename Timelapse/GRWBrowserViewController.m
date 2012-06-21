@@ -7,7 +7,9 @@
 //
 
 #import "GRWBrowserViewController.h"
-#import "Strings.h"
+#import "GRWStrings.h"
+#import "GRWTimelapse.h"
+#import "GRWTimelapseEditorViewController.h"
 
 @interface GRWBrowserViewController ()
 
@@ -29,7 +31,9 @@
         self.browserTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         self.browserTableView.delegate = self;
         self.browserTableView.dataSource = self;
+        self.timelapseController = [[GRWTimelapseController alloc] init];
         self.title = BROWSER_TITLE;
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(newTimelapse:)];
     }
     return self;
 }
@@ -39,7 +43,7 @@
     [super viewWillAppear:animated];
     self.browserTableView.frame = self.view.bounds;
     self.browserTableView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(newTimelapse:)];
+    [self.browserTableView reloadData];
 }
 
 - (void) viewDidLoad 
@@ -50,7 +54,8 @@
 
 - (void) newTimelapse:(id)sender 
 {
-    
+    GRWTimelapse *timelapse = [timelapseController newTimelapse];
+    [self editTimelapse:timelapse];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -58,15 +63,28 @@
     return YES;
 }
 
+- (void) editTimelapse:(GRWTimelapse*)timelapse
+{
+    GRWTimelapseEditorViewController *timelapseEditor = [[GRWTimelapseEditorViewController alloc] initWithTimelapse:timelapse];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:timelapseEditor];
+    [self presentModalViewController:navController animated:YES];
+}
+
 #pragma mark UITableViewDelegate methods
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
+    GRWTimelapse *timelapse = [timelapseController.timelapses objectAtIndex:indexPath.row];
+    [self editTimelapse:timelapse];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50.0;
 }
 
 #pragma mark UITableViewDataSource methods
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return [timelapseController.timelapses count];
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -74,8 +92,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-        cell.textLabel.text = @"Asdf";
-        cell.detailTextLabel.text= @"Fdsa";
+        GRWTimelapse *timelapse = [timelapseController.timelapses objectAtIndex:indexPath.row];
+        cell.textLabel.text = timelapse.name;
+        cell.detailTextLabel.text = timelapse.description;
     }
     return cell;
 }

@@ -28,4 +28,6 @@
 
 - (id) initWithDirectoryPath:(NSString*)path;
 
+- (void) saveMetadata;
+
 @end

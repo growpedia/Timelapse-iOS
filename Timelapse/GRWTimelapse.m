@@ -9,7 +9,7 @@
 #import "GRWTimelapse.h"
 #import "JSONKit.h"
 
-#define METADATA_FILENAME @"metadata.json"
+#define FILENAME @"metadata.json"
 #define METADATA_NAME @"name"
 #define METADATA_DESCRIPTION @"description"
 #define METADATA_CREATION @"creation_date"
@@ -45,7 +45,7 @@
 }
 
 - (void) loadMetadata {
-    NSString *metadataPath = [directoryPath stringByAppendingPathComponent:METADATA_FILENAME];
+    NSString *metadataPath = [directoryPath stringByAppendingPathComponent:FILENAME];
     NSError *error = nil;
     NSData *jsonData = [NSData dataWithContentsOfFile:metadataPath options:NSDataReadingUncached error:&error];
     if (error) {
@@ -95,6 +95,38 @@
 
 - (void) loadImages {
     
+}
+
+- (void) saveMetadata {
+    NSMutableDictionary *metadataDictionary = [NSMutableDictionary dictionaryWithCapacity:4];
+    NSDateFormatter *dateFormatter = [self dateFormatter];
+    NSString *creationString = [dateFormatter stringFromDate:self.creationDate];
+    NSString *modifiedString = [dateFormatter stringFromDate:self.modifiedDate];
+    
+    if (!name) {
+        self.name = @"";
+    }
+    if (!description) {
+        self.description = @"";
+    }
+    
+    [metadataDictionary setObject:name forKey:METADATA_NAME];
+    [metadataDictionary setObject:description forKey:METADATA_DESCRIPTION];
+    [metadataDictionary setObject:creationString forKey:METADATA_CREATION];
+    [metadataDictionary setObject:modifiedString forKey:METADATA_MODIFIED];
+    
+    NSError *error = nil;
+    NSData *jsonData = [metadataDictionary JSONDataWithOptions:JKSerializeOptionPretty error:&error];
+    if (error) {
+        NSLog(@"Error creating metadata JSON: %@%@",[error localizedDescription], [error userInfo]);
+        return;
+    }
+    NSString *metadataPath = [directoryPath stringByAppendingPathComponent:FILENAME];
+    [jsonData writeToFile:metadataPath options:NSDataWritingAtomic error:&error];
+    if (error) {
+        NSLog(@"Error writing metadata JSON: %@%@", [error localizedDescription], [error userInfo]);
+        return;
+    }
 }
 
 @end

@@ -19,6 +19,7 @@
 		D9C6014D1592783000717107 /* GRWBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C6014C1592783000717107 /* GRWBrowserViewController.m */; };
 		D9C601511592797700717107 /* GRWTimelapse.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C601501592797700717107 /* GRWTimelapse.m */; };
 		D9C601591592818B00717107 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C601561592818B00717107 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D9C601621592925900717107 /* GRWTimelapseEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C601611592925800717107 /* GRWTimelapseEditorViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +44,9 @@
 		D9C601501592797700717107 /* GRWTimelapse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRWTimelapse.m; sourceTree = "<group>"; };
 		D9C601551592818B00717107 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		D9C601561592818B00717107 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
-		D9C6015B15928A0B00717107 /* Strings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Strings.h; sourceTree = "<group>"; };
+		D9C6015B15928A0B00717107 /* GRWStrings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GRWStrings.h; sourceTree = "<group>"; };
+		D9C601601592925800717107 /* GRWTimelapseEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRWTimelapseEditorViewController.h; sourceTree = "<group>"; };
+		D9C601611592925800717107 /* GRWTimelapseEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRWTimelapseEditorViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +102,9 @@
 				D965F0FD158FA8B700447E62 /* GRWCameraViewController.m */,
 				D9C6014B1592783000717107 /* GRWBrowserViewController.h */,
 				D9C6014C1592783000717107 /* GRWBrowserViewController.m */,
-				D9C6015B15928A0B00717107 /* Strings.h */,
+				D9C601601592925800717107 /* GRWTimelapseEditorViewController.h */,
+				D9C601611592925800717107 /* GRWTimelapseEditorViewController.m */,
+				D9C6015B15928A0B00717107 /* GRWStrings.h */,
 				D9C6015C15928BCC00717107 /* Model */,
 				D965F100158FAAF600447E62 /* GRWTimelapseController.h */,
 				D965F101158FAAF600447E62 /* GRWTimelapseController.m */,
@@ -214,6 +219,7 @@
 				D9C6014D1592783000717107 /* GRWBrowserViewController.m in Sources */,
 				D9C601511592797700717107 /* GRWTimelapse.m in Sources */,
 				D9C601591592818B00717107 /* JSONKit.m in Sources */,
+				D9C601621592925900717107 /* GRWTimelapseEditorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +290,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Timelapse/Timelapse-Prefix.pch";
 				INFOPLIST_FILE = "Timelapse/Timelapse-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -295,6 +302,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Timelapse/Timelapse-Prefix.pch";
 				INFOPLIST_FILE = "Timelapse/Timelapse-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

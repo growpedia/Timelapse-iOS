@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GRWTimelapse.h"
 
 @interface GRWTimelapseController : NSObject
 
 @property (nonatomic, retain) NSMutableArray *timelapses;
+
+- (GRWTimelapse*) newTimelapse;
 
 @end
