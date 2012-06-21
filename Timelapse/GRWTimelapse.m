@@ -87,7 +87,8 @@
 }
 
 - (void) loadDefaults {
-    self.name = @"Timelapse";
+    NSString *directoryName = [directoryPath lastPathComponent];
+    self.name = [NSString stringWithFormat:@"Timelapse %@", directoryName];
     self.description = @"";
     self.creationDate = [NSDate date];
     self.modifiedDate = [NSDate date];
@@ -101,6 +102,7 @@
     NSMutableDictionary *metadataDictionary = [NSMutableDictionary dictionaryWithCapacity:4];
     NSDateFormatter *dateFormatter = [self dateFormatter];
     NSString *creationString = [dateFormatter stringFromDate:self.creationDate];
+    self.modifiedDate = [NSDate date];
     NSString *modifiedString = [dateFormatter stringFromDate:self.modifiedDate];
     
     if (!name) {
