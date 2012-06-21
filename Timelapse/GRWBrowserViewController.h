@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "GRWTimelapseController.h"
-#import "GRWTimelapseEditorViewController.h"
+#import "GRWEditorViewController.h"
 
 @interface GRWBrowserViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, retain) UITableView *browserTableView;
 @property (nonatomic, retain) GRWTimelapseController *timelapseController;
-@property (nonatomic, retain) GRWTimelapseEditorViewController *editorViewController;
+@property (nonatomic, retain) GRWEditorViewController *editorViewController;
 
 @end

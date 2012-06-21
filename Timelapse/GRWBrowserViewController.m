@@ -9,7 +9,7 @@
 #import "GRWBrowserViewController.h"
 #import "GRWStrings.h"
 #import "GRWTimelapse.h"
-#import "GRWTimelapseEditorViewController.h"
+#import "GRWEditorViewController.h"
 
 @interface GRWBrowserViewController ()
 
@@ -35,7 +35,7 @@
         self.timelapseController = [[GRWTimelapseController alloc] init];
         self.title = BROWSER_TITLE;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(newTimelapse:)];
-        self.editorViewController = [[GRWTimelapseEditorViewController alloc] init];
+        self.editorViewController = [[GRWEditorViewController alloc] init];
     }
     return self;
 }

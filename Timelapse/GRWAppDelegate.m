@@ -8,7 +8,7 @@
 
 #import "GRWAppDelegate.h"
 #import "GRWBrowserViewController.h"
-#import "GRWTimelapseEditorViewController.h"
+#import "GRWEditorViewController.h"
 
 @implementation GRWAppDelegate
 
@@ -24,7 +24,7 @@
     UIViewController *rootViewController = nil;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = [[UISplitViewController alloc] init];
-        GRWTimelapseEditorViewController *editorViewController = fileBrowser.editorViewController;
+        GRWEditorViewController *editorViewController = fileBrowser.editorViewController;
         UINavigationController *editorNavController = [[UINavigationController alloc] initWithRootViewController:editorViewController];
         splitViewController.viewControllers = [NSArray arrayWithObjects:browserNavController, editorNavController, nil];
         splitViewController.delegate = editorViewController;

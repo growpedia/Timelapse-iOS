@@ -1,19 +1,19 @@
 //
-//  GRWTimelapseEditorViewController.m
+//  GRWEditorViewController.m
 //  Timelapse
 //
 //  Created by Chris Ballinger on 6/20/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "GRWTimelapseEditorViewController.h"
+#import "GRWEditorViewController.h"
 #import "GRWStrings.h"
 
-@interface GRWTimelapseEditorViewController ()
+@interface GRWEditorViewController ()
 
 @end
 
-@implementation GRWTimelapseEditorViewController
+@implementation GRWEditorViewController
 @synthesize nameField, descriptionField, timelapse;
 
 

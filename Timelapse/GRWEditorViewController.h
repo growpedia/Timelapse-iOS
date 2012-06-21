@@ -1,5 +1,5 @@
 //
-//  GRWTimelapseEditorViewController.h
+//  GRWEditorViewController.h
 //  Timelapse
 //
 //  Created by Chris Ballinger on 6/20/12.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GRWTimelapse.h"
 
-@interface GRWTimelapseEditorViewController : UIViewController <UISplitViewControllerDelegate, UITextFieldDelegate>
+@interface GRWEditorViewController : UIViewController <UISplitViewControllerDelegate, UITextFieldDelegate>
 
 @property (nonatomic, retain) UITextField *nameField;
 @property (nonatomic, retain) UITextField *descriptionField;
