@@ -31,8 +31,11 @@
         for (NSString *folderName in folderNames) {
             NSLog(@"Loading Timelapse: %@", folderName);
             NSString *timelapsePath = [documentsDirectory stringByAppendingPathComponent:folderName];
-            GRWTimelapse *timelapse = [[GRWTimelapse alloc] initWithDirectoryPath:timelapsePath];
-            [timelapses addObject:timelapse];
+            BOOL isDir = NO;
+            if ([fileManager fileExistsAtPath:timelapsePath isDirectory:&isDir] && isDir) {
+                GRWTimelapse *timelapse = [[GRWTimelapse alloc] initWithDirectoryPath:timelapsePath];
+                [timelapses addObject:timelapse];
+            }
         }
         
     }

@@ -67,8 +67,6 @@
     [self.view addSubview:descriptionField];
     [self.view addSubview:descriptionLabel];
     
-    self.nameField.text = timelapse.name;
-    self.descriptionLabel.text = timelapse.description;
     self.nameLabel.text = NAME_WORD;
     self.descriptionLabel.text = DESCRIPTION_WORD;
     
@@ -82,6 +80,9 @@
     self.nameField.frame = CGRectMake(100, 0, 100, 50);
     self.descriptionLabel.frame = CGRectMake(0, 100, 100, 50);
     self.descriptionField.frame = CGRectMake(100, 100, 100, 50);
+    
+    self.nameField.text = timelapse.name;
+    self.descriptionField.text = timelapse.description;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

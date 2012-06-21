@@ -92,10 +92,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-        GRWTimelapse *timelapse = [timelapseController.timelapses objectAtIndex:indexPath.row];
-        cell.textLabel.text = timelapse.name;
-        cell.detailTextLabel.text = timelapse.description;
     }
+    GRWTimelapse *timelapse = [timelapseController.timelapses objectAtIndex:indexPath.row];
+    cell.textLabel.text = timelapse.name;
+    cell.detailTextLabel.text = timelapse.description;
     return cell;
 }
 
