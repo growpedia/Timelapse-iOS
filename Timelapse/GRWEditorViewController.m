@@ -44,7 +44,8 @@
 - (void) takePhotoPressed:(id)sender {
     UIImageView *overlayImageView = [[UIImageView alloc] initWithImage:[timelapse.images lastObject]];
     overlayImageView.alpha = 0.5;
-    overlayImageView.frame = CGRectMake(0, 0, 480, 320);
+    CGFloat bottomControlsHeight = 53.0;
+    overlayImageView.frame = CGRectMake(0, 0, 320, 480-bottomControlsHeight);
     self.imagePicker.cameraOverlayView = overlayImageView;
     [self presentModalViewController:imagePicker animated:YES];
 }

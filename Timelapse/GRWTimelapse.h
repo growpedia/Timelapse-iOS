@@ -17,6 +17,8 @@
  String filepath to directory
  Array of image references*/
 
+#define kGRWTimelapseImagesLoadedNotification @"kGRWTimelapseImagesLoadedNotification"
+
 @interface GRWTimelapse : NSObject
 
 @property (nonatomic, retain) NSString *name;

@@ -24,6 +24,7 @@
     self.browserTableView = nil;
     self.timelapseController = nil;
     self.editorViewController = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (id)init
@@ -37,8 +38,13 @@
         self.title = BROWSER_TITLE;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(newTimelapse:)];
         self.editorViewController = [[GRWEditorViewController alloc] init];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imagesLoaded) name:kGRWTimelapseImagesLoadedNotification object:nil];
     }
     return self;
+}
+         
+- (void) imagesLoaded {
+    [self.browserTableView reloadData];
 }
 
 - (void) viewWillAppear:(BOOL)animated 
@@ -109,7 +115,7 @@
     cell.textLabel.text = timelapse.name;
     cell.detailTextLabel.text = timelapse.description;
     UIImage *image = [timelapse.images lastObject];
-    UIImage *scaledImage = [image thumbnailImage:40 transparentBorder:2 cornerRadius:2 interpolationQuality:kCGInterpolationHigh];
+    UIImage *scaledImage = [image thumbnailImage:80 transparentBorder:5 cornerRadius:10 interpolationQuality:kCGInterpolationHigh];
     cell.imageView.image = scaledImage;
     return cell;
 }

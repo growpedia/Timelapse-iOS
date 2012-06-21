@@ -96,24 +96,30 @@
 }
 
 - (void) loadImages {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSError *error = nil;
-    NSArray *fileNames = [fileManager contentsOfDirectoryAtPath:directoryPath error:&error];
-    if (error) {
-        NSLog(@"Error reading timelapse directory: %@%@", [error localizedDescription], [error userInfo]);
-        error = nil;
-    }
-    self.images = [NSMutableArray arrayWithCapacity:[fileNames count]];
-    for (NSString *fileName in fileNames) {
-        NSString *imagePath = [directoryPath stringByAppendingPathComponent:fileName];
-
-        if ([[imagePath pathExtension] isEqualToString:@"jpeg"]) {
-            UIImage *image = [[UIImage alloc] initWithContentsOfFile:imagePath];
-            NSLog(@"Loading image: %@", fileName);
-            UIImage *scaledImage = [image resizedImage:CGSizeMake(200, 200) interpolationQuality:kCGInterpolationHigh];
-            [self.images addObject:scaledImage];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSError *error = nil;
+        NSArray *fileNames = [fileManager contentsOfDirectoryAtPath:directoryPath error:&error];
+        if (error) {
+            NSLog(@"Error reading timelapse directory: %@%@", [error localizedDescription], [error userInfo]);
+            error = nil;
         }
-    }
+        self.images = [NSMutableArray arrayWithCapacity:[fileNames count]];
+        for (NSString *fileName in fileNames) {
+            NSString *imagePath = [directoryPath stringByAppendingPathComponent:fileName];
+            
+            if ([[imagePath pathExtension] isEqualToString:@"jpeg"]) {
+                UIImage *image = [[UIImage alloc] initWithContentsOfFile:imagePath];
+                NSLog(@"Loading image: %@", fileName);
+                UIImage *scaledImage = [image resizedImage:CGSizeMake(1024, 1024) interpolationQuality:kCGInterpolationHigh];
+                [self.images addObject:scaledImage];
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:kGRWTimelapseImagesLoadedNotification object:self];
+        });
+    });
+
 }
 
 - (void) saveMetadata {
@@ -157,7 +163,7 @@
     if (error) {
         NSLog(@"Error writing JPEG: %@%@", [error localizedDescription], [error userInfo]);
     }
-    UIImage *scaledImage = [newImage resizedImage:CGSizeMake(200, 200) interpolationQuality:kCGInterpolationHigh];
+    UIImage *scaledImage = [newImage resizedImage:CGSizeMake(1024, 1024) interpolationQuality:kCGInterpolationHigh];
     [self.images addObject:scaledImage];
 }
 
