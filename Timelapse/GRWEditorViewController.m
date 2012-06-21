@@ -42,6 +42,10 @@
 }
                                         
 - (void) takePhotoPressed:(id)sender {
+    UIImageView *overlayImageView = [[UIImageView alloc] initWithImage:[timelapse.images lastObject]];
+    overlayImageView.alpha = 0.5;
+    overlayImageView.frame = CGRectMake(0, 0, 480, 320);
+    self.imagePicker.cameraOverlayView = overlayImageView;
     [self presentModalViewController:imagePicker animated:YES];
 }
 
@@ -131,6 +135,7 @@
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     [self.imagePicker dismissModalViewControllerAnimated:YES];
     [self.timelapse addImage:image];
+    [self refreshFields];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

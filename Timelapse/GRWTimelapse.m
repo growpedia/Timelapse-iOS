@@ -8,7 +8,7 @@
 
 #import "GRWTimelapse.h"
 #import "JSONKit.h"
-#import "UIImage+GRWExtensions.h"
+#import "UIImage+Resize.h"
 
 #define FILENAME @"metadata.json"
 #define METADATA_NAME @"name"
@@ -103,13 +103,14 @@
         NSLog(@"Error reading timelapse directory: %@%@", [error localizedDescription], [error userInfo]);
         error = nil;
     }
+    self.images = [NSMutableArray arrayWithCapacity:[fileNames count]];
     for (NSString *fileName in fileNames) {
         NSString *imagePath = [directoryPath stringByAppendingPathComponent:fileName];
 
         if ([[imagePath pathExtension] isEqualToString:@"jpeg"]) {
             UIImage *image = [[UIImage alloc] initWithContentsOfFile:imagePath];
             NSLog(@"Loading image: %@", fileName);
-            UIImage *scaledImage = [UIImage imageWithImage:image scaledToSize:CGSizeMake(1024, 1024)];
+            UIImage *scaledImage = [image resizedImage:CGSizeMake(200, 200) interpolationQuality:kCGInterpolationHigh];
             [self.images addObject:scaledImage];
         }
     }
@@ -156,7 +157,7 @@
     if (error) {
         NSLog(@"Error writing JPEG: %@%@", [error localizedDescription], [error userInfo]);
     }
-    UIImage *scaledImage = [UIImage imageWithImage:newImage scaledToSize:CGSizeMake(200, 200)];
+    UIImage *scaledImage = [newImage resizedImage:CGSizeMake(200, 200) interpolationQuality:kCGInterpolationHigh];
     [self.images addObject:scaledImage];
 }
 

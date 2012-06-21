@@ -10,7 +10,7 @@
 #import "GRWStrings.h"
 #import "GRWTimelapse.h"
 #import "GRWEditorViewController.h"
-#import "UIImage+GRWExtensions.h"
+#import "UIImage+Resize.h"
 
 @interface GRWBrowserViewController ()
 
@@ -108,7 +108,8 @@
     GRWTimelapse *timelapse = [timelapseController.timelapses objectAtIndex:indexPath.row];
     cell.textLabel.text = timelapse.name;
     cell.detailTextLabel.text = timelapse.description;
-    UIImage *scaledImage = [UIImage imageWithImage:[timelapse.images lastObject] scaledToSize:CGSizeMake(50, 50)];
+    UIImage *image = [timelapse.images lastObject];
+    UIImage *scaledImage = [image thumbnailImage:40 transparentBorder:2 cornerRadius:2 interpolationQuality:kCGInterpolationHigh];
     cell.imageView.image = scaledImage;
     return cell;
 }
