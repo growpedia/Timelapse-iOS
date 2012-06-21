@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "GRWTimelapse.h"
 
-@interface GRWEditorViewController : UIViewController <UISplitViewControllerDelegate, UITextFieldDelegate>
+@interface GRWEditorViewController : UIViewController <UISplitViewControllerDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, retain) UITextField *nameField;
 @property (nonatomic, retain) UITextField *descriptionField;
 @property (nonatomic, retain) GRWTimelapse *timelapse;
+@property (nonatomic, retain) UIImagePickerController *imagePicker;
+@property (nonatomic, retain) UIImageView *imageView;
 
 @end

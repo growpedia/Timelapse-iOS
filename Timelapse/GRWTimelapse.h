@@ -29,5 +29,6 @@
 - (id) initWithDirectoryPath:(NSString*)path;
 
 - (void) saveMetadata;
+- (void) addImage:(UIImage*)newImage;
 
 @end

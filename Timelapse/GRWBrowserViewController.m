@@ -10,6 +10,7 @@
 #import "GRWStrings.h"
 #import "GRWTimelapse.h"
 #import "GRWEditorViewController.h"
+#import "UIImage+GRWExtensions.h"
 
 @interface GRWBrowserViewController ()
 
@@ -107,8 +108,13 @@
     GRWTimelapse *timelapse = [timelapseController.timelapses objectAtIndex:indexPath.row];
     cell.textLabel.text = timelapse.name;
     cell.detailTextLabel.text = timelapse.description;
-    
+    UIImage *scaledImage = [UIImage imageWithImage:[timelapse.images lastObject] scaledToSizeWithSameAspectRatio:CGSizeMake(50, 50)];
+    cell.imageView.image = scaledImage;
     return cell;
+}
+
+- (void) didReceiveMemoryWarning {
+    NSLog(@"Memory warning!");
 }
 
 @end

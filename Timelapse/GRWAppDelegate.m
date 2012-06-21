@@ -17,7 +17,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     GRWBrowserViewController *fileBrowser = [[GRWBrowserViewController alloc] init];
     UINavigationController *browserNavController = [[UINavigationController alloc] initWithRootViewController:fileBrowser];

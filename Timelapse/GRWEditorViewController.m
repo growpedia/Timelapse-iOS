@@ -14,13 +14,15 @@
 @end
 
 @implementation GRWEditorViewController
-@synthesize nameField, descriptionField, timelapse;
+@synthesize nameField, descriptionField, timelapse, imagePicker, imageView;
 
 
 - (void) dealloc {
     self.nameField = nil;
     self.descriptionField = nil;
     self.timelapse = nil;
+    self.imagePicker = nil;
+    self.imageView = nil;
 }
 
 - (id)init
@@ -31,12 +33,16 @@
         self.descriptionField = [[UITextField alloc] initWithFrame:CGRectZero];
         self.descriptionField.delegate = self;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(takePhotoPressed:)];
+        self.imagePicker = [[UIImagePickerController alloc] init];
+        self.imagePicker.delegate = self;
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        self.imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     }
     return self;
 }
                                         
 - (void) takePhotoPressed:(id)sender {
-    
+    [self presentModalViewController:imagePicker animated:YES];
 }
 
 - (void) setTimelapse:(GRWTimelapse *)newTimelapse {
@@ -59,6 +65,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:nameField];
     [self.view addSubview:descriptionField];
+    [self.view addSubview:imageView];
     
     self.nameField.borderStyle = UITextBorderStyleRoundedRect;
     self.nameField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -68,6 +75,7 @@
     self.descriptionField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.descriptionField.placeholder = DESCRIPTION_WORD;
     self.descriptionField.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth;
+    self.imageView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -75,12 +83,14 @@
     CGFloat fieldHeight = 30.0;
     self.nameField.frame = CGRectMake(0, 0, self.view.frame.size.width/2, fieldHeight);
     self.descriptionField.frame = CGRectMake(self.view.frame.size.width/2, 0, self.view.frame.size.width/2, fieldHeight);
+    self.imageView.frame = CGRectMake(0, fieldHeight, self.view.frame.size.width, self.view.frame.size.height-fieldHeight);
     [self refreshFields];
 }
 
 - (void) refreshFields {
     self.nameField.text = timelapse.name;
     self.descriptionField.text = timelapse.description;
+    self.imageView.image = [timelapse.images lastObject];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -112,6 +122,24 @@
   invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
     self.navigationItem.leftBarButtonItem = nil;
+}
+
+#pragma mark UIImagePickerControllerDelegate methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [self.timelapse addImage:image];
+    [self.imagePicker dismissModalViewControllerAnimated:YES];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self.imagePicker dismissModalViewControllerAnimated:YES];
+}
+
+- (void) didReceiveMemoryWarning {
+    NSLog(@"Memory warning!");
 }
 
 @end

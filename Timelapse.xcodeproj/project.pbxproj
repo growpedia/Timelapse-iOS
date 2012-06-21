@@ -19,6 +19,7 @@
 		D9C601511592797700717107 /* GRWTimelapse.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C601501592797700717107 /* GRWTimelapse.m */; };
 		D9C601591592818B00717107 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C601561592818B00717107 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D9C601621592925900717107 /* GRWEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C601611592925800717107 /* GRWEditorViewController.m */; };
+		D9C601791593032000717107 /* UIImage+GRWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C601781593032000717107 /* UIImage+GRWExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,8 +43,10 @@
 		D9C601551592818B00717107 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		D9C601561592818B00717107 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		D9C6015B15928A0B00717107 /* GRWStrings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GRWStrings.h; sourceTree = "<group>"; };
-		D9C601601592925800717107 /* GRWEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = GRWEditorViewController.h; sourceTree = "<group>"; };
+		D9C601601592925800717107 /* GRWEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRWEditorViewController.h; sourceTree = "<group>"; };
 		D9C601611592925800717107 /* GRWEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRWEditorViewController.m; sourceTree = "<group>"; };
+		D9C601771593032000717107 /* UIImage+GRWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GRWExtensions.h"; sourceTree = "<group>"; };
+		D9C601781593032000717107 /* UIImage+GRWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GRWExtensions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,8 @@
 				D9C6015C15928BCC00717107 /* Model */,
 				D965F100158FAAF600447E62 /* GRWTimelapseController.h */,
 				D965F101158FAAF600447E62 /* GRWTimelapseController.m */,
+				D9C601771593032000717107 /* UIImage+GRWExtensions.h */,
+				D9C601781593032000717107 /* UIImage+GRWExtensions.m */,
 				D965F0E3158FA76E00447E62 /* Supporting Files */,
 			);
 			path = Timelapse;
@@ -214,6 +219,7 @@
 				D9C601511592797700717107 /* GRWTimelapse.m in Sources */,
 				D9C601591592818B00717107 /* JSONKit.m in Sources */,
 				D9C601621592925900717107 /* GRWEditorViewController.m in Sources */,
+				D9C601791593032000717107 /* UIImage+GRWExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
