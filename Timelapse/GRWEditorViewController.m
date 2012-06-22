@@ -14,7 +14,7 @@
 @end
 
 @implementation GRWEditorViewController
-@synthesize nameField, descriptionField, timelapse, imagePicker, imageView;
+@synthesize nameField, descriptionField, timelapse, imagePicker, imageView, slider;
 
 
 - (void) dealloc {
@@ -23,6 +23,7 @@
     self.timelapse = nil;
     self.imagePicker = nil;
     self.imageView = nil;
+    self.slider = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -38,9 +39,20 @@
         self.imagePicker.delegate = self;
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         self.imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        self.slider = [[UISlider alloc] initWithFrame:CGRectZero];
+        [self.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+        slider.value = slider.maximumValue;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFields) name:kGRWTimelapseImagesLoadedNotification object:nil];
+        
     }
     return self;
+}
+         
+
+- (void) sliderValueChanged:(id)sender {
+    NSUInteger sliderIndex = floor((timelapse.imageCount-1) * slider.value);
+    UIImage *selectedImage = [timelapse.images objectAtIndex:sliderIndex];
+    self.imageView.image = selectedImage;
 }
                                         
 - (void) takePhotoPressed:(id)sender {
@@ -72,6 +84,7 @@
     [self.view addSubview:nameField];
     [self.view addSubview:descriptionField];
     [self.view addSubview:imageView];
+    [self.view addSubview:slider];
     
     self.nameField.borderStyle = UITextBorderStyleRoundedRect;
     self.nameField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -82,6 +95,7 @@
     self.descriptionField.placeholder = DESCRIPTION_WORD;
     self.descriptionField.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth;
     self.imageView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.slider.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -89,7 +103,9 @@
     CGFloat fieldHeight = 30.0;
     self.nameField.frame = CGRectMake(0, 0, self.view.frame.size.width/2, fieldHeight);
     self.descriptionField.frame = CGRectMake(self.view.frame.size.width/2, 0, self.view.frame.size.width/2, fieldHeight);
-    self.imageView.frame = CGRectMake(0, fieldHeight, self.view.frame.size.width, self.view.frame.size.height-fieldHeight);
+    CGFloat sliderHeight = 45.0;
+    self.slider.frame = CGRectMake(0, self.view.frame.size.height-sliderHeight, self.view.frame.size.width, sliderHeight);
+    self.imageView.frame = CGRectMake(0, fieldHeight, self.view.frame.size.width, self.view.frame.size.height-fieldHeight-sliderHeight);
     [self refreshFields];
 }
 

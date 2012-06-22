@@ -16,5 +16,6 @@
 @property (nonatomic, retain) GRWTimelapse *timelapse;
 @property (nonatomic, retain) UIImagePickerController *imagePicker;
 @property (nonatomic, retain) UIImageView *imageView;
+@property (nonatomic, retain) UISlider *slider;
 
 @end
