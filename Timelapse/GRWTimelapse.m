@@ -15,16 +15,18 @@
 #define METADATA_DESCRIPTION @"description"
 #define METADATA_CREATION @"creation_date"
 #define METADATA_MODIFIED @"modified_date"
+#define METADATA_IMAGECOUNT @"image_count"
 #define ISO_8601 @"yyyy-MM-dd HH:mm:ss.SSS'Z'"
 
 @interface GRWTimelapse(Private)
 - (void) loadMetadata;
 - (void) loadDefaults;
 - (void) loadImages;
+- (NSString*) lastImagePath;
 @end
 
 @implementation GRWTimelapse
-@synthesize name, description, creationDate, modifiedDate, directoryPath, images;
+@synthesize name, description, creationDate, modifiedDate, directoryPath, images, thumbnail, lastImage, imageCount;
 
 - (void) dealloc {
     self.name = nil;
@@ -33,6 +35,8 @@
     self.modifiedDate = nil;
     self.directoryPath = nil;
     self.images = nil;
+    self.thumbnail = nil;
+    self.lastImage = nil;
 }
 
 
@@ -40,7 +44,9 @@
     if (self = [super init]) {
         self.directoryPath = path;
         [self loadMetadata];
-        [self loadImages];
+        if (imageCount > 0) {
+            [self loadImages];
+        }
     }
     return self;
 }
@@ -77,6 +83,7 @@
     if (!modifiedDate) {
         self.modifiedDate = [NSDate date];
     }
+    self.imageCount = [[metadataDictionary objectForKey:METADATA_IMAGECOUNT] integerValue]; 
 }
 
 - (NSDateFormatter*) dateFormatter 
@@ -93,33 +100,30 @@
     self.description = @"";
     self.creationDate = [NSDate date];
     self.modifiedDate = [NSDate date];
+    self.imageCount = 0;
 }
 
 - (void) loadImages {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSError *error = nil;
-        NSArray *fileNames = [fileManager contentsOfDirectoryAtPath:directoryPath error:&error];
-        if (error) {
-            NSLog(@"Error reading timelapse directory: %@%@", [error localizedDescription], [error userInfo]);
-            error = nil;
-        }
-        self.images = [NSMutableArray arrayWithCapacity:[fileNames count]];
-        for (NSString *fileName in fileNames) {
-            NSString *imagePath = [directoryPath stringByAppendingPathComponent:fileName];
-            
-            if ([[imagePath pathExtension] isEqualToString:@"jpeg"]) {
-                UIImage *image = [[UIImage alloc] initWithContentsOfFile:imagePath];
-                NSLog(@"Loading image: %@", fileName);
+        self.images = [NSMutableArray arrayWithCapacity:imageCount];
+        NSLog(@"Loading last image: %@", [self lastImagePath]);
+        UIImage *rawLastImage = [[UIImage alloc] initWithContentsOfFile:[self lastImagePath]];
+        self.lastImage = [rawLastImage resizedImage:CGSizeMake(1024, 1024) interpolationQuality:kCGInterpolationHigh];
+        self.thumbnail = [rawLastImage thumbnailImage:80 transparentBorder:5 cornerRadius:10 interpolationQuality:kCGInterpolationHigh];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:kGRWTimelapseImagesLoadedNotification object:self];
+        });
+        for (int i = 0; i < (imageCount-1); i++) {
+            NSString *imagePath = [self pathForImage:i];
+            UIImage *image = [[UIImage alloc] initWithContentsOfFile:imagePath];
+            if (image) {
+                NSLog(@"Loading image: %@", imagePath);
                 UIImage *scaledImage = [image resizedImage:CGSizeMake(1024, 1024) interpolationQuality:kCGInterpolationHigh];
                 [self.images addObject:scaledImage];
             }
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:kGRWTimelapseImagesLoadedNotification object:self];
-        });
+        [self.images addObject:lastImage];
     });
-
 }
 
 - (void) saveMetadata {
@@ -140,6 +144,7 @@
     [metadataDictionary setObject:description forKey:METADATA_DESCRIPTION];
     [metadataDictionary setObject:creationString forKey:METADATA_CREATION];
     [metadataDictionary setObject:modifiedString forKey:METADATA_MODIFIED];
+    [metadataDictionary setObject:[NSNumber numberWithUnsignedInteger:imageCount] forKey:METADATA_IMAGECOUNT];
     
     NSError *error = nil;
     NSData *jsonData = [metadataDictionary JSONDataWithOptions:JKSerializeOptionPretty error:&error];
@@ -154,17 +159,34 @@
         return;
     }
 }
+                                  
+- (NSString*) lastImagePath {
+    return [self pathForImage:imageCount-1];
+}
+
+- (NSString*) pathForImage:(NSUInteger)imageNumber {
+    return [directoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.jpeg",imageNumber]];
+}
 
 - (void) addImage:(UIImage*)newImage {
-    NSData *jpegData = UIImageJPEGRepresentation(newImage, 1.0);
-    NSString *jpegFilePath = [directoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.jpeg",[self.images count]]];
-    NSError *error = nil;
-    [jpegData writeToFile:jpegFilePath options:NSDataWritingAtomic error:&error];
-    if (error) {
-        NSLog(@"Error writing JPEG: %@%@", [error localizedDescription], [error userInfo]);
-    }
-    UIImage *scaledImage = [newImage resizedImage:CGSizeMake(1024, 1024) interpolationQuality:kCGInterpolationHigh];
-    [self.images addObject:scaledImage];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        imageCount++;
+        NSData *jpegData = UIImageJPEGRepresentation(newImage, 1.0);
+        NSString *jpegFilePath = [self lastImagePath];
+        NSError *error = nil;
+        [jpegData writeToFile:jpegFilePath options:NSDataWritingAtomic error:&error];
+        if (error) {
+            NSLog(@"Error writing JPEG: %@%@", [error localizedDescription], [error userInfo]);
+        }
+        UIImage *scaledImage = [newImage resizedImage:CGSizeMake(1024, 1024) interpolationQuality:kCGInterpolationHigh];
+        self.lastImage = scaledImage;
+        self.thumbnail = [newImage thumbnailImage:80 transparentBorder:5 cornerRadius:10 interpolationQuality:kCGInterpolationHigh];
+        [self.images addObject:scaledImage];
+        [self saveMetadata];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:kGRWTimelapseImagesLoadedNotification object:self];
+        });
+    });
 }
 
 @end

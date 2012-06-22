@@ -59,6 +59,11 @@
     }
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.browserTableView reloadData];
+}
+
 - (void) viewDidLoad 
 {
     [super viewDidLoad];
@@ -114,9 +119,7 @@
     GRWTimelapse *timelapse = [timelapseController.timelapses objectAtIndex:indexPath.row];
     cell.textLabel.text = timelapse.name;
     cell.detailTextLabel.text = timelapse.description;
-    UIImage *image = [timelapse.images lastObject];
-    UIImage *scaledImage = [image thumbnailImage:80 transparentBorder:5 cornerRadius:10 interpolationQuality:kCGInterpolationHigh];
-    cell.imageView.image = scaledImage;
+    cell.imageView.image = timelapse.thumbnail;
     return cell;
 }
 

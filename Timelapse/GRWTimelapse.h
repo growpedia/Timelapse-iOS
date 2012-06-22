@@ -27,6 +27,9 @@
 @property (nonatomic, retain) NSDate *modifiedDate;
 @property (nonatomic, retain) NSString *directoryPath;
 @property (nonatomic, retain) NSMutableArray *images;
+@property (nonatomic, retain) UIImage *thumbnail;
+@property (nonatomic, retain) UIImage *lastImage;
+@property (nonatomic) NSUInteger imageCount;
 
 - (id) initWithDirectoryPath:(NSString*)path;
 

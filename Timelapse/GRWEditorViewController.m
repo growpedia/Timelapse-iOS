@@ -23,6 +23,7 @@
     self.timelapse = nil;
     self.imagePicker = nil;
     self.imageView = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (id)init
@@ -37,6 +38,7 @@
         self.imagePicker.delegate = self;
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         self.imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFields) name:kGRWTimelapseImagesLoadedNotification object:nil];
     }
     return self;
 }
@@ -54,7 +56,6 @@
     timelapse = newTimelapse;
     self.title = timelapse.name;
     [self refreshFields];
-
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
@@ -95,7 +96,7 @@
 - (void) refreshFields {
     self.nameField.text = timelapse.name;
     self.descriptionField.text = timelapse.description;
-    self.imageView.image = [timelapse.images lastObject];
+    self.imageView.image = timelapse.lastImage;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
