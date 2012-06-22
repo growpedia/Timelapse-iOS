@@ -17,5 +17,8 @@
 @property (nonatomic, retain) UIImagePickerController *imagePicker;
 @property (nonatomic, retain) UIImageView *imageView;
 @property (nonatomic, retain) UISlider *slider;
+@property (nonatomic, retain) UIBarButtonItem *imageNavigationLabel;
+@property (nonatomic, retain) UIBarButtonItem *exportButton;
+@property (nonatomic, retain) UIBarButtonItem *deleteButton;
 
 @end

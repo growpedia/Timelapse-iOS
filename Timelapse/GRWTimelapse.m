@@ -96,7 +96,8 @@
 
 - (void) loadDefaults {
     NSString *directoryName = [directoryPath lastPathComponent];
-    self.name = [NSString stringWithFormat:@"Timelapse %@", directoryName];
+    int directoryIndex = [directoryName intValue];
+    self.name = [NSString stringWithFormat:@"Timelapse %d", directoryIndex+1];
     self.description = @"";
     self.creationDate = [NSDate date];
     self.modifiedDate = [NSDate date];
@@ -120,9 +121,15 @@
                 NSLog(@"Loading image: %@", imagePath);
                 UIImage *scaledImage = [image resizedImage:CGSizeMake(1024, 1024) interpolationQuality:kCGInterpolationHigh];
                 [self.images addObject:scaledImage];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kGRWTimelapseImagesLoadedNotification object:self];
+                });
             }
         }
         [self.images addObject:lastImage];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:kGRWTimelapseImagesLoadedNotification object:self];
+        });
     });
 }
 

@@ -9,12 +9,13 @@
 #import "GRWEditorViewController.h"
 #import "GRWStrings.h"
 
-@interface GRWEditorViewController ()
-
+@interface GRWEditorViewController (Private)
+- (void) exportPressed:(id)sender;
+- (void) deletePressed:(id)sender;
 @end
 
 @implementation GRWEditorViewController
-@synthesize nameField, descriptionField, timelapse, imagePicker, imageView, slider;
+@synthesize nameField, descriptionField, timelapse, imagePicker, imageView, slider, imageNavigationLabel, exportButton, deleteButton;
 
 
 - (void) dealloc {
@@ -24,6 +25,9 @@
     self.imagePicker = nil;
     self.imageView = nil;
     self.slider = nil;
+    self.imageNavigationLabel = nil;
+    self.exportButton = nil;
+    self.deleteButton = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -43,16 +47,31 @@
         [self.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
         slider.value = slider.maximumValue;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFields) name:kGRWTimelapseImagesLoadedNotification object:nil];
-        
+        self.imageNavigationLabel = [[UIBarButtonItem alloc] initWithTitle:@"0/0" style:UIBarButtonItemStylePlain target:nil action:nil];
+        self.exportButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(exportPressed:)];
+        self.deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deletePressed:)];
+        UIBarButtonItem	*flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        self.toolbarItems = [NSArray arrayWithObjects:imageNavigationLabel, deleteButton, flexibleSpace, exportButton, nil];
     }
     return self;
+}
+
+- (void) exportPressed:(id)sender {
+    
+}
+
+- (void) deletePressed:(id)sender {
+    
 }
          
 
 - (void) sliderValueChanged:(id)sender {
-    NSUInteger sliderIndex = floor((timelapse.imageCount-1) * slider.value);
-    UIImage *selectedImage = [timelapse.images objectAtIndex:sliderIndex];
-    self.imageView.image = selectedImage;
+    NSUInteger sliderIndex = floor(([timelapse.images count]-1) * slider.value);
+    if (sliderIndex < [timelapse.images count]) {
+        UIImage *selectedImage = [timelapse.images objectAtIndex:sliderIndex];
+        self.imageView.image = selectedImage;
+    }
+    self.imageNavigationLabel.title = [NSString stringWithFormat:@"%d/%d",sliderIndex+1, [timelapse.images count]];
 }
                                         
 - (void) takePhotoPressed:(id)sender {
@@ -100,19 +119,27 @@
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.navigationController setToolbarHidden:NO animated:animated];
     CGFloat fieldHeight = 30.0;
     self.nameField.frame = CGRectMake(0, 0, self.view.frame.size.width/2, fieldHeight);
     self.descriptionField.frame = CGRectMake(self.view.frame.size.width/2, 0, self.view.frame.size.width/2, fieldHeight);
-    CGFloat sliderHeight = 45.0;
+    CGFloat sliderHeight = 45.0;    
     self.slider.frame = CGRectMake(0, self.view.frame.size.height-sliderHeight, self.view.frame.size.width, sliderHeight);
     self.imageView.frame = CGRectMake(0, fieldHeight, self.view.frame.size.width, self.view.frame.size.height-fieldHeight-sliderHeight);
     [self refreshFields];
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.navigationController setToolbarHidden:YES animated:animated];
 }
 
 - (void) refreshFields {
     self.nameField.text = timelapse.name;
     self.descriptionField.text = timelapse.description;
     self.imageView.image = timelapse.lastImage;
+    self.slider.value = self.slider.maximumValue;
+    [self sliderValueChanged:nil];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
